@@ -22,7 +22,7 @@ runs:
           -d "author=${{ github.actor }}"
       shell: bash
       env:
-        file: "${GITHUB_RUN_ID}.tar.gz"
+        file: "${{github.run_id}}.tar.gz"
         AWS_ACCESS_KEY_ID: "${{ inputs.aws-key }}"
         AWS_SECRET_ACCESS_KEY: "${{ inputs.aws-secret }}"
         AWS_DEFAULT_REGION: "garage"
