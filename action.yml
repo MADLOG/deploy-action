@@ -12,14 +12,15 @@ runs:
   using: 'composite'
   steps:
     - run: |
+        echo ${AWS_ACCESS_KEY_ID}
         tar -czf dist.tar.gz --exclude='dist.tar.gz' --exclude="node_modules" --exclude='**/node_modules' * .??*
         aws s3 cp --quiet dist.tar.gz s3://releases/${inputs.repo}/${file}
         #        curl -X POST "https://deploy.madlog.dk/api/uploaded" \
         #  -d "file=${FILE}" \
         #  -d "repo=${REPO}" \
-        #  -d "commit=${COMMIT}" \
-        #  -d "branch=${BRANCH}" \
-        #  -d "author=${AUTHOR}"
+        #  -d "commit=${{ github.event.head_commit.message }}" \
+        #  -d "branch=${{ github.ref_name }}" \
+        #  -d "author=${{ github.actor }}"
       shell: bash
       env:
         file: "${GITHUB_RUN_ID}.tar.gz"
