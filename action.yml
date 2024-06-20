@@ -6,14 +6,8 @@ inputs:
   aws-secret:
     required: true
   repo:
-    required: true
+    required: false
     default: "${{ github.repository }}"
-env:
-  file: "${GITHUB_RUN_ID}.tar.gz"
-  AWS_ACCESS_KEY_ID: "${{ inputs.aws-key }}"
-  AWS_SECRET_ACCESS_KEY: "${{ secrets.inputs.aws-secret }}"
-  AWS_DEFAULT_REGION: "garage"
-  AWS_ENDPOINT_URL: "https://files.madlog.dk"
 runs:
   using: 'composite'
   steps:
@@ -27,3 +21,9 @@ runs:
         #  -d "branch=${BRANCH}" \
         #  -d "author=${AUTHOR}"
       shell: bash
+      env:
+        file: "${GITHUB_RUN_ID}.tar.gz"
+        AWS_ACCESS_KEY_ID: "${{ inputs.aws-key }}"
+        AWS_SECRET_ACCESS_KEY: "${{ secrets.inputs.aws-secret }}"
+        AWS_DEFAULT_REGION: "garage"
+        AWS_ENDPOINT_URL: "https://files.madlog.dk"
