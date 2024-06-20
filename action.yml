@@ -10,5 +10,4 @@ runs:
         echo ${REPO}
         echo ${{aws-key}}
         echo ${{ github.event.head_commit.message }}
-
       shell: bash
