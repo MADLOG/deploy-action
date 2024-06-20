@@ -8,5 +8,6 @@ inputs:
 outputs:
   example-output:
     description: 'Output description'
-runs: |
-  echo "Hello!"
+runs:
+  using: "bash"
+  main: "run.sh"
