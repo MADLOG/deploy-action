@@ -10,4 +10,3 @@ outputs:
     description: 'Output description'
 runs: |
   echo "Hello!"
-  env
