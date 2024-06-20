@@ -3,15 +3,26 @@ description: 'Description of your action'
 inputs:
   aws-key:
     required: true
+  aws-secret:
+    required: true
   repo:
     required: true
     default: "${{ github.repository }}"
+env:
+  file: "${GITHUB_RUN_ID}.tar.gz"
+          AWS_ACCESS_KEY_ID: "${{ secrets.FILE_KEY }}"
+        AWS_SECRET_ACCESS_KEY: "${{ secrets.FILE_SECRET }}"
+        AWS_DEFAULT_REGION: "garage"
+        AWS_ENDPOINT_URL: "https://files.madlog.dk"
 runs:
   using: 'composite'
   steps:
     - run: |
-        echo ${REPO}
-        echo ${{inputs.aws-key}}
-        echo ${{inputs.repo}}
-        echo ${{ github.event.head_commit.message }}
-      shell: bash
+        tar -czf dist.tar.gz --exclude='dist.tar.gz' --exclude="node_modules" --exclude='**/node_modules' * .??*
+        aws s3 cp --quiet dist.tar.gz s3://releases/${inputs.repo}/${file}
+        #        curl -X POST "https://deploy.madlog.dk/api/uploaded" \
+        #  -d "file=${FILE}" \
+        #  -d "repo=${REPO}" \
+        #  -d "commit=${COMMIT}" \
+        #  -d "branch=${BRANCH}" \
+        #  -d "author=${AUTHOR}"
