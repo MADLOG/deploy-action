@@ -10,10 +10,10 @@ inputs:
     default: "${{ github.repository }}"
 env:
   file: "${GITHUB_RUN_ID}.tar.gz"
-          AWS_ACCESS_KEY_ID: "${{ secrets.FILE_KEY }}"
-        AWS_SECRET_ACCESS_KEY: "${{ secrets.FILE_SECRET }}"
-        AWS_DEFAULT_REGION: "garage"
-        AWS_ENDPOINT_URL: "https://files.madlog.dk"
+  AWS_ACCESS_KEY_ID: "${{ secrets.FILE_KEY }}"
+  AWS_SECRET_ACCESS_KEY: "${{ secrets.FILE_SECRET }}"
+  AWS_DEFAULT_REGION: "garage"
+  AWS_ENDPOINT_URL: "https://files.madlog.dk"
 runs:
   using: 'composite'
   steps:
