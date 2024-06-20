@@ -1,0 +1,13 @@
+name: 'MADLOG deploy action'
+description: 'Description of your action'
+inputs:
+  example-input:
+    description: 'Input description'
+    required: true
+    default: 'default value'
+outputs:
+  example-output:
+    description: 'Output description'
+runs: |
+  echo "Hello!"
+  env
