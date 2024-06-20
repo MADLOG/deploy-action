@@ -16,7 +16,7 @@ runs:
         aws s3 cp --quiet dist.tar.gz s3://releases/${{inputs.repo}}/${file}
         curl -X POST "https://deploy.madlog.dk/api/uploaded" \
           -d "file=${file}" \
-          -d "repo=${inputs.repo}" \
+          -d "repo=${{inputs.repo}}" \
           -d "commit=${{ github.event.head_commit.message }}" \
           -d "branch=${{ github.ref_name }}" \
           -d "author=${{ github.actor }}"
