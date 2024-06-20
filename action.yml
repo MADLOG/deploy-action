@@ -3,11 +3,15 @@ description: 'Description of your action'
 inputs:
   aws-key:
     required: true
+  repo:
+    required: true
+    default: "${{ github.repository }}"
 runs:
   using: 'composite'
   steps:
     - run: |
         echo ${REPO}
-        echo ${{input.aws-key}}
+        echo ${{inputs.aws-key}}
+        echo ${{inputs.repo}}
         echo ${{ github.event.head_commit.message }}
       shell: bash
