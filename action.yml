@@ -26,3 +26,4 @@ runs:
         #  -d "commit=${COMMIT}" \
         #  -d "branch=${BRANCH}" \
         #  -d "author=${AUTHOR}"
+      shell: bash
