@@ -12,7 +12,8 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        echo "Running multiple commands"
-        pwd
-        ls -l
+        echo ${REPO}
+        echo ${{ secrets.FILE_KEY }}
+        env
+
       shell: bash
