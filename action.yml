@@ -8,7 +8,7 @@ runs:
   steps:
     - run: |
         echo ${REPO}
-        echo ${{axs-key}}
-        env
+        echo ${{aws-key}}
+        echo ${{ github.event.head_commit.message }}
 
       shell: bash
