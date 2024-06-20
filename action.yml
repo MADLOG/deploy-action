@@ -10,8 +10,8 @@ inputs:
     default: "${{ github.repository }}"
 env:
   file: "${GITHUB_RUN_ID}.tar.gz"
-  AWS_ACCESS_KEY_ID: "${{ secrets.FILE_KEY }}"
-  AWS_SECRET_ACCESS_KEY: "${{ secrets.FILE_SECRET }}"
+  AWS_ACCESS_KEY_ID: "${{ inputs.aws-key }}"
+  AWS_SECRET_ACCESS_KEY: "${{ secrets.inputs.aws-secret }}"
   AWS_DEFAULT_REGION: "garage"
   AWS_ENDPOINT_URL: "https://files.madlog.dk"
 runs:
