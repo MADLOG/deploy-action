@@ -1,19 +1,14 @@
 name: 'MADLOG deploy action'
 description: 'Description of your action'
 inputs:
-  example-input:
-    description: 'Input description'
+  aws-key:
     required: true
-    default: 'default value'
-outputs:
-  example-output:
-    description: 'Output description'
 runs:
   using: 'composite'
   steps:
     - run: |
         echo ${REPO}
-        echo ${{ secrets.FILE_KEY }}
+        echo ${aws-key}
         env
 
       shell: bash
