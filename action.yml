@@ -9,5 +9,10 @@ outputs:
   example-output:
     description: 'Output description'
 runs:
-  using: "bash"
-  main: "run.sh"
+  using: 'composite'
+  steps:
+    - run: |
+        echo "Running multiple commands"
+        pwd
+        ls -l
+      shell: bash
