@@ -8,6 +8,6 @@ runs:
   steps:
     - run: |
         echo ${REPO}
-        echo ${{aws-key}}
+        echo ${{input.aws-key}}
         echo ${{ github.event.head_commit.message }}
       shell: bash
