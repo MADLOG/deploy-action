@@ -14,6 +14,7 @@ runs:
     - run: |
         tar -czf dist.tar.gz --exclude='dist.tar.gz' --exclude="node_modules" --exclude='**/node_modules' * .??*
         #aws s3 cp --quiet dist.tar.gz s3://releases/${{inputs.repo}}/${file}
+        echo $AWS_ENDPOINT_URL
         aws s3 cp dist.tar.gz s3://releases/${{inputs.repo}}/${file}
         curl -v -X POST "https://deploy.madlog.dk/api/uploaded" \
           -d "runid=${{github.run_id}}" \
