@@ -12,16 +12,16 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        curl ifconfig.net    
         tar -czf dist.tar.gz --exclude='dist.tar.gz' --exclude="node_modules" --exclude='**/node_modules' * .??*
         #aws s3 cp --quiet dist.tar.gz s3://releases/${{inputs.repo}}/${file}
-        aws s3 cp --verbose dist.tar.gz s3://releases/${{inputs.repo}}/${file}
+        aws s3 cp dist.tar.gz s3://releases/${{inputs.repo}}/${file}
         curl -v -X POST "https://deploy.madlog.dk/api/uploaded" \
           -d "runid=${{github.run_id}}" \
           -d "repo=${{inputs.repo}}" \
           -d "commit=${{ github.event.head_commit.message }}" \
           -d "branch=${{ github.ref_name }}" \
           -d "author=${{ github.actor }}"
+        date
       shell: bash
       env:
         file: "${{github.run_id}}.tar.gz"
