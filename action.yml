@@ -1,6 +1,9 @@
 name: 'MADLOG deploy action'
 description: 'Description of your action'
 inputs:
+  only-dist-dir:
+    required: false
+    default: false  
   aws-key:
     required: true
   aws-secret:
@@ -28,6 +31,7 @@ runs:
         date
       shell: bash
       env:
+        only_dist_dir: "${{ inputs.only-dist-dir }}"
         file: "${{github.run_id}}.tar.gz"
         AWS_ACCESS_KEY_ID: "${{ inputs.aws-key }}"
         AWS_SECRET_ACCESS_KEY: "${{ inputs.aws-secret }}"
