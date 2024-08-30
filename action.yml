@@ -15,8 +15,7 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        export
-        if [ "$only_dir_dir" = "true" ]
+        if [ "$only_dist_dir" = "true" ]
         then
           tar -czf dist.tar.gz --exclude='dist.tar.gz' --exclude="node_modules" --exclude='**/node_modules' dist
         else
