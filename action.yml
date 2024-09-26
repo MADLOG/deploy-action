@@ -26,7 +26,7 @@ runs:
           -d "runid=${{github.run_id}}" \
           -d "repo=${{inputs.repo}}" \
           -d "commit=${{ github.event.head_commit.message }}" \
-          -d "branch=${{ github.ref_name }}" \
+          -d "branch=main" \
           -d "author=${{ github.actor }}"
         date
       shell: bash
