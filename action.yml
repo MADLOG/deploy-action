@@ -21,6 +21,9 @@ runs:
         else
           tar -czf dist.tar.gz --exclude='dist.tar.gz' --exclude="node_modules" --exclude='**/node_modules' * .??*
         fi        
+	export AWS_REQUEST_CHECKSUM_CALCULATION=when_required 
+	export AWS_RESPONSE_CHECKSUM_VALIDATION=when_required 
+        aws configure set default.s3.multipart_upload_checksum_mode disabled
         aws s3 cp dist.tar.gz s3://releases/${{inputs.repo}}/${file} --endpoint-url="https://files.madlog.dk"
         curl -v -X POST "https://deploy.madlog.dk/api/uploaded" \
           -d "runid=${{github.run_id}}" \
